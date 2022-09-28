@@ -53,7 +53,7 @@
 			prevShowClass: null, // Additional CSS class applied when a new item is shown on prev event
 			prevHideClass: null, // Additional CSS class applied when the current item is hidden on prev event
 			videoAutoPlay: false, // Enable/Disable video autoplay
-			loadError: 'Sorry, error while loading the content...' // Error message displayed when a content fails to load
+			loadError: 'Sorry, an error occured while loading the content...' // Error message displayed when a content fails to load
 		},
 		
 		touchMouseEvent: {
@@ -492,7 +492,7 @@
 				//var boll_resive = false;
 				//Popup.prototype._reponsiveContent(w, h, win_width);
 				
-				if(self.flow.$content.size()){
+				if(self.flow.$content){
 					self._reponsiveContent(w, h, win_width);
 				}
 				// if(w) { 
