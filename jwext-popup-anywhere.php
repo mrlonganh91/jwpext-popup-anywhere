@@ -424,7 +424,7 @@ if(!class_exists("JWEXT_POPUP_ANYWHERE")) {
             }else{  
                 wp_enqueue_media();
                 //wp_enqueue_style('admin-metro-css', 'https://cdn.korzh.com/metroui/v4/css/metro-all.min.css');
-                wp_enqueue_script('admin-metro-js', 'https://cdn.korzh.com/metroui/v4/js/metro.min.js');
+                wp_enqueue_script('admin-metro-js', POPUPANW_DIRURL.'template/assets/js/metro.min.js');
                 wp_enqueue_style('admin-popupanywhere-custom-css', POPUPANW_DIRURL.'template/assets/css/css.css');
                 wp_enqueue_script('admin-popupanywhere-custom-js', POPUPANW_DIRURL.'template/assets/js/js.js');
                 wp_enqueue_style('animate-popup-css', POPUPANW_DIRURL.'template/assets/css/animate.compat.css');
