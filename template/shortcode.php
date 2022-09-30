@@ -13,8 +13,8 @@ if($jwext_popup_type=='image'){
         $url = home_url('/').$url;
     }
     ?>
-    	<a id="jwpext_example1" href="<?php echo $url;?>" title="Popup Anywhere Plugin" style="display:none">    
-    		<img alt="jwpext_example1" src="<?php echo $url;?>" />
+    	<a id="jwpext_example1" href="<?php echo esc_url($url);?>" title="Popup Anywhere Plugin" style="display:none">    
+    		<img alt="jwpext_example1" src="<?php echo esc_url($url);?>" />
         </a>
         <script>
         jQuery(document).ready(function($) {

@@ -13,7 +13,7 @@
     <?php echo __( 'You have not set up Content show in Popup', 'popup-anywhere' );?>
 </a>
 <div id="jwpext_inline" class="jwpext_none">
-    <?php echo $content;?>
+    <?php echo wp_kses_post($content);?>
 </div>
 
 <script>

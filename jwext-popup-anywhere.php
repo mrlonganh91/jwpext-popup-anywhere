@@ -75,6 +75,21 @@ if(!class_exists("JWEXT_POPUP_ANYWHERE")) {
                 add_action('init', array( $this, 'cookie_init'));
             }
             add_action( 'wp_ajax_get_assignshow', array( $this, 'get_assignshow') );
+			
+			add_filter( 'wp_kses_allowed_html', array( $this, 'custom_wpkses_post_tags'), 10, 2 );
+        }
+		function custom_wpkses_post_tags( $tags, $context ) {
+            if ( 'post' === $context ) {
+                $tags['iframe'] = array(
+                    'src'             => true,
+                    'height'          => true,
+                    'width'           => true,
+                    'frameborder'     => true,
+                    'allowfullscreen' => true,
+                    'style' => true,
+                );
+            }        
+            return $tags;
         }
         function cookie_init(){
             if( is_admin() ) {
@@ -491,30 +506,34 @@ if(!class_exists("JWEXT_POPUP_ANYWHERE")) {
 				
 				if(isset($_POST['jwext_popup_assignshow']) && is_array($_POST['jwext_popup_assignshow'])){
 					//Sanitizing here:
-					foreach ( $_POST['jwext_popup_assignshow'] as $key => $val ) {
-						$_POST['jwext_popup_assignshow'][ $key ] = sanitize_text_field( $val );
-					}					
-					$jwext_popup_assignshow     = json_encode($_POST['jwext_popup_assignshow']);
+                    $new_input = array();                    
+					foreach ( $_POST['jwext_popup_assignshow'] as $key => $val ) {						
+                        $new_input[ $key ] = sanitize_text_field( $val );
+					}
+					$jwext_popup_assignshow     = sanitize_text_field(json_encode($new_input));
 				}else{
 					$jwext_popup_assignshow		= '';
 				}
-				
+                				
 				if(isset($_POST['jwext_custom_postype']) && is_array($_POST['jwext_custom_postype'])){
 					//Sanitizing here:
+                    $new_input = array();   
 					foreach ( $_POST['jwext_custom_postype'] as $key => $val ) {
-						$_POST['jwext_custom_postype'][ $key ] = sanitize_text_field( $val );
+						$new_input[ $key ] = sanitize_text_field( $val );
 					}					
-					$jwext_custom_postype       = json_encode($_POST['jwext_custom_postype']);
+					$jwext_custom_postype       = sanitize_text_field(json_encode($new_input));
 				}else{
 					$jwext_custom_postype		= '';
 				}
-				
+                	
+                
 				if(isset($_POST['jwext_custom_menu']) && is_array($_POST['jwext_custom_menu'])){
 					//Sanitizing here:
+                    $new_input = array();   
 					foreach ( $_POST['jwext_custom_menu'] as $key => $val ) {
-						$_POST['jwext_custom_menu'][ $key ] = sanitize_text_field( $val );
+						$new_input[ $key ] = sanitize_text_field( $val );
 					}
-					$jwext_custom_menu       	= json_encode($_POST['jwext_custom_menu']);
+					$jwext_custom_menu       	= sanitize_text_field(json_encode($new_input));
 				}else{
 					$jwext_custom_menu			= '';
 				}
